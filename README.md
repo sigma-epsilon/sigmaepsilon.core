@@ -1,2 +1,1 @@
-# sigmaepsilon.core
-Common developer utilities for Python projects
+# **sigmaepsilon.core** - Common developer utilities for Python projects
