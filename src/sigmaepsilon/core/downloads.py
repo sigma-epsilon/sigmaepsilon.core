@@ -67,7 +67,7 @@ def _decompress(filename):
 
 
 def _get_vtk_file_url(filename):
-    return f'https://github.com/dewloosh/dewloosh-data/raw/main/{filename}'
+    return f'https://github.com/sigmaepsilon/sigmaepsilon.data/raw/main/{filename}'
 
 
 def _http_request(url):
@@ -84,12 +84,12 @@ def _retrieve_file(retriever, filename):
 
     Parameters
     ----------
-    retriever : str or callable
+    retriever: str or callable
         If str, it is treated as a url.
         If callable, the function must take no arguments and must
         return a tuple like (file_path, resp), where file_path is
         the path to the file to use.
-    filename : str
+    filename: str
         The name of the file.
     
     Notes
