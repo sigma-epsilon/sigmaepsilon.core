@@ -5,9 +5,9 @@ import math
 
 from sigmaepsilon.core.tools.tools import float_to_str_sig, issequence, \
     suppress, timeit
-from sigmaepsilon.core.tools.alphabet import alphabet, ordrange, latinrange, \
+from sigmaepsilon.core.alphabet import alphabet, ordrange, latinrange, \
     urange, greekrange, arabicrange
-from sigmaepsilon.core.tools.kwargtools import isinkwargs, allinkwargs, anyinkwargs, \
+from sigmaepsilon.core.kwargtools import isinkwargs, allinkwargs, anyinkwargs, \
     getfromkwargs, popfromkwargs, getallfromkwargs, getasany, countkwargs
 
 

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 
+__all__ = ["json2dict", "dict2json"]
+
 
 def json2dict(jsonpath: str):
     with open(jsonpath, "r") as jsonfile:

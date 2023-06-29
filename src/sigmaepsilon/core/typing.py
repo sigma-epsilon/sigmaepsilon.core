@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from typing import Hashable
+import six
+
 try:
     from collections.abc import Iterable
 except ImportError:
     from collections import Iterable
-import six
 
 
 __all__ = ["issequence", "ishashable"]

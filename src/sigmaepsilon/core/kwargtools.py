@@ -1,9 +1,22 @@
 # -*- coding: utf-8 -*-
+from typing import Callable
+
 try:
     from collections.abc import Iterable
 except ImportError:
     from collections import Iterable
-from typing import Callable
+
+
+__all__ = [
+    "isinkwargs",
+    "allinkwargs",
+    "anyinkwargs",
+    "getfromkwargs",
+    "popfromkwargs",
+    "getallfromkwargs",
+    "getasany",
+    "countkwargs"
+]
 
 
 def isinkwargs(keys, **kwargs):
@@ -35,8 +48,7 @@ def getfromkwargs(keys, default=None, astype=None, **kwargs):
         return [astype(p) for p in res]
 
 
-def popfromkwargs(keys, d: dict = None, *args, default=None, astype=None,
-                **kwargs):
+def popfromkwargs(keys, d: dict = None, *args, default=None, astype=None, **kwargs):
     res = [d.pop(k, default) for k in keys]
     if astype is None:
         return res
@@ -52,12 +64,14 @@ def getallfromkwargs(keys, default=None, **kwargs):
         missing = list(filter(lambda p: p == default, params))
         if len(missing) == 1:
             key = keys[missing[0]]
-            raise RuntimeError("Parameter {} is missing from the definition!"
-                               .format(key))
+            raise RuntimeError(
+                "Parameter {} is missing from the definition!".format(key)
+            )
         else:
             missing_keys = [keys[i] for i in missing]
-            raise RuntimeError("Parameters {} is missing from the definition!"
-                               .format(missing_keys))
+            raise RuntimeError(
+                "Parameters {} is missing from the definition!".format(missing_keys)
+            )
 
 
 def getasany(keys, default=None, **kwargs):
@@ -68,9 +82,8 @@ def getasany(keys, default=None, **kwargs):
         return kwargs[keys[condition.index(True)]]
     except Exception:
         return None
-    
+
 
 def countkwargs(fnc: Callable, **kwargs):
     assert callable(fnc)
     return sum(list(map(fnc, kwargs.keys())))
-

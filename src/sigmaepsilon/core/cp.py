@@ -6,8 +6,10 @@ import threading
 
 _NotFound = object()
 
+__all__ = ["classproperty"]
+
 # TODO: This can still be made to work for setters by implementing an
-# accompanying metaclass that supports it; we just don't need that right 
+# accompanying metaclass that supports it; we just don't need that right
 # this moment
 class classproperty(property):
     """

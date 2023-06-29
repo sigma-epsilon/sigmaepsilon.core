@@ -21,7 +21,7 @@ def setproperty(**kwargs):
 
 
 """
-Implementation A : class annotations solution using an object descriptor 
+Implementation A: class annotations solution using an object descriptor 
 and a wrapper class with classic pythonic manipulations.
 """
 
@@ -72,7 +72,7 @@ def abstract_class_property_A(**kwargs):
 
 
 """
-Implementation B : class annotations solution using an object descriptor and a 
+Implementation B: class annotations solution using an object descriptor and a 
 wrapper class using the __mro__ property of the class.
 This implementation also checks the validity of the declaration.
 """

@@ -1,29 +1,32 @@
 import os
 import inspect
+from typing import Callable
+
+__all__ = ["find_source_folder", "get_definition_file_path"]
 
 
-def find_source_folder(current_file:str=None, maxlevel:int=10) -> str:
+def find_source_folder(current_file: str = None, maxlevel: int = 10) -> str:
     """
     Returns the source folder.
     """
     if current_file is None:
         current_file = __file__
-    
+
     parent_is_src = False
     for _ in range(maxlevel):
-        parent_is_src = os.path.dirname(current_file).endswith('src')
+        parent_is_src = os.path.dirname(current_file).endswith("src")
         if parent_is_src:
             break
         else:
             current_file = os.path.dirname(current_file)
-    
+
     if parent_is_src:
         return os.path.dirname(current_file)
     else:
         raise RuntimeError
-    
 
-def get_definition_file_path(obj):
+
+def get_definition_file_path(obj: Callable) -> str:
     """
     Returns the path of the file a class or a function is implemented in.
     """
@@ -33,5 +36,5 @@ def get_definition_file_path(obj):
         file_path = inspect.getfile(obj.__class__)
     else:
         raise ValueError("Input must be a function or class.")
-        
+
     return os.path.abspath(file_path)

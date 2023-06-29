@@ -7,6 +7,7 @@ from collections import namedtuple, OrderedDict
 Color = namedtuple('RGB', 'red, green, blue')
 colors = {}  # dict of colors
 
+__all__ = ["colors", "Color", "RGB"]
 
 class RGB(Color):
     

@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
-from typing import Callable
+from typing import Callable, Any
+
+__all__ = ["InfixOperator"]
 
 
-class Infix:
+class InfixOperator:
     """
     Implements a custom Infix operator using  the 
     operators '<<', '>>' and '|'.
 
     Examples
     --------
-    >>> x = Infix(lambda x, y: x * y)
+    >>> x = InfixOperator(lambda x, y: x * y)
     >>> print(2 | x | 4)
     8
 
-    >>> x = Infix(lambda x, y: x + y)
+    >>> x = InfixOperator(lambda x, y: x + y)
     >>> print(2 << x >> 4)
     6
     """
@@ -21,17 +23,17 @@ class Infix:
     def __init__(self, function: Callable):
         self.function = function
 
-    def __ror__(self, other):
-        return Infix(lambda x, self=self, other=other: self.function(other, x))
+    def __ror__(self, other: Any) -> "InfixOperator":
+        return InfixOperator(lambda x, self=self, other=other: self.function(other, x))
 
-    def __or__(self, other):
+    def __or__(self, other: Any) -> Any:
         return self.function(other)
 
-    def __rlshift__(self, other):
-        return Infix(lambda x, self=self, other=other: self.function(other, x))
+    def __rlshift__(self, other: Any) -> "InfixOperator":
+        return InfixOperator(lambda x, self=self, other=other: self.function(other, x))
 
-    def __rshift__(self, other):
+    def __rshift__(self, other: Any) -> Any:
         return self.function(other)
 
-    def __call__(self, value1, value2):
+    def __call__(self, value1: Any, value2: Any) -> Any:
         return self.function(value1, value2)
