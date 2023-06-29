@@ -24,7 +24,7 @@ Once the enviroment is created, activate it via typing
 
 ### Nested Dictionaries
 
-In every case where you'd want to use a `dict`, you can use a `Library` as a drop-in replacement, but on top of what a simple dictionary provides, a `Library` is more capable, as it provides a machinery to handle nested layouts. It is basically an ordered `defaultdict` with a self replicating default factory. This feature is exploited in many classes in other `SigmaEpsilon` packages, the most prominent ones being `dewloosh.geom.PolyData` and `dewloosh.solid.fem.FemMesh`.
+In every case where you'd want to use a `dict`, you can use a `Library` as a drop-in replacement, but on top of what a simple dictionary provides, a `Library` is more capable, as it provides a machinery to handle nested layouts. It is basically an ordered `defaultdict` with a self replicating default factory. This feature is exploited in many classes in other `SigmaEpsilon` packages, the most prominent ones being `sigmaepsilon.mesh.PolyData` and `sigmaepsilon.solid.fem.FemMesh`.
 
 ```python
 >>> from sigmaepsilon.core import Library

@@ -10,7 +10,7 @@ sigmaepsilon.core
     This package is under active development and in an alpha stage. Come back later,
     or star the GitHub repo to make sure you don't miss the first stable release!
 
-The main purpose of `sigmaepsilon.core` is to provide batteries to other dewloosh
+The main purpose of `sigmaepsilon.core` is to provide batteries to other SigmaEpsilon
 projects, and to provide a set of common developer tools for the public.
 
 Features
