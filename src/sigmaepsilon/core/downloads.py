@@ -59,7 +59,7 @@ def _repo_file_request(repo_path, filename):
 
 def _retrieve_file(retriever, filename):
     """
-    Retrieve file and cache it in dewloosh.core.EXAMPLES_PATH.
+    Retrieve file and cache it in sigmaepsilon.core.EXAMPLES_PATH.
 
     Parameters
     ----------

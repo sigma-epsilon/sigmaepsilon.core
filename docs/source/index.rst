@@ -1,10 +1,10 @@
-.. dewloosh.core documentation master file, created by
+.. sigmaepsilon.core documentation master file, created by
    sphinx-quickstart on Wed Jun  1 20:23:30 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 sigmaepsilon.core
-=============
+=================
 
 .. warning::
     This package is under active development and in an alpha stage. Come back later,

@@ -1,5 +1,5 @@
 sigmaepsilon.core API reference
 ===========================
 
-.. automodule:: dewloosh.core
+.. automodule:: sigmaepsilon.core
     :members:
