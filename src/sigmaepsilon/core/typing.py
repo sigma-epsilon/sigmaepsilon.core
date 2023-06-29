@@ -20,7 +20,7 @@ def issequence(arg) -> bool:
     --------
     The formatter to use to print a floating point number with 4 digits:
     
-    >>> from dewloosh.core.tools import issequence
+    >>> from sigmaepsilon.core.typing import issequence
     >>> issequence([1, 2])
     True
     

@@ -1,5 +1,5 @@
 sigmaepsilon.core API reference
 ===========================
 
-.. toctree::
-    api_tools
+.. automodule:: dewloosh.core
+    :members:

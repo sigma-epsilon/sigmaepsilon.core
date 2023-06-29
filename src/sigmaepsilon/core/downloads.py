@@ -25,6 +25,9 @@ from . import EXAMPLES_PATH, SIGMAEPSILON_DATA_PATH as DATA_PATH
 pyvista: Optional[ModuleType] = import_package("pyvista")
 
 
+__all__ = ["download_file", "delete_downloads"]
+
+
 def _check_examples_path():
     """Check if the examples path exists."""
     if not EXAMPLES_PATH:
@@ -33,29 +36,6 @@ def _check_examples_path():
             "environment variable `SIGMAEPSILON_USERDATA_PATH` "
             "to a writable path and restarting Python"
         )
-
-
-def delete_downloads():
-    """
-    Delete all downloaded examples to free space or update the files.
-
-    Returns
-    -------
-    bool
-        Returns ``True``.
-
-    Examples
-    --------
-    Delete all local downloads.
-
-    >>> from sigmaepsilon.core import delete_downloads
-    >>> delete_downloads()  # doctest:+SKIP
-    True
-    """
-    _check_examples_path()
-    shutil.rmtree(EXAMPLES_PATH)
-    os.makedirs(EXAMPLES_PATH)
-    return True
 
 
 def _decompress(filename):
@@ -144,7 +124,54 @@ def _download_and_read(filename):
     return saved_file
 
 
-###############################################################################
+def download_file(filename: str) -> str:
+    """
+    Downloads a data file and returns the path of it on
+    your local filesystem.
+
+    Parameters
+    ----------
+    filename: str
+        The name of the file to download with extension included.
+
+    Returns
+    -------
+    str
+        A path to a file on your filesystem.
+
+    See also
+    --------
+    :func:`~sigmaepsilon.core.downloads.delete_downloads`
+
+    Example
+    --------
+    >>> from sigmaepsilon.core.downloads import download_file
+    >>> download_file("stand.vtk")
+    """
+    return _download_and_read(filename)
+
+
+def delete_downloads() -> bool:
+    """
+    Delete all downloaded examples to free space or update the files.
+    Returns `True` if the operation was succesful, or `False` if it wasn't.
+
+    See also
+    --------
+    :func:`~sigmaepsilon.core.downloads.download_file`
+
+    Examples
+    --------
+    Delete all local downloads.
+
+    >>> from sigmaepsilon.core import delete_downloads
+    >>> delete_downloads()  # doctest:+SKIP
+    True
+    """
+    _check_examples_path()
+    shutil.rmtree(EXAMPLES_PATH)
+    os.makedirs(EXAMPLES_PATH)
+    return True
 
 
 def download_stand():  # pragma: no cover
@@ -162,7 +189,7 @@ def download_stand():  # pragma: no cover
     >>> download_stand()
     ...
     """
-    return _download_file("stand.vtk")[0]
+    return download_file("stand.vtk")
 
 
 def download_bunny(tetra: bool = False):  # pragma: no cover
@@ -187,4 +214,4 @@ def download_bunny(tetra: bool = False):  # pragma: no cover
     ...
     """
     filename = "bunny_T3.vtk" if not tetra else "bunny_TET4.vtk"
-    return _download_file(filename)[0]
+    return download_file(filename)
