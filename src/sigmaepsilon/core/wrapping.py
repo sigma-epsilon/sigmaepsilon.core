@@ -14,7 +14,7 @@ class Wrapper:
         (b) wraps an existing object at object creation if it is a positional
             argument and an instance of `Wrapper.wraptype`
         (b) wraps the object Wrapper.wraptype(*args, **kwargs) if
-            `Wrapper.wraptype` is not None
+            `Wrapper.wraptype` is not `None`
     """
     wrapkey: str = "wrap"
     wraptype: Any = NoneType
