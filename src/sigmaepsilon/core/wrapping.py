@@ -16,7 +16,6 @@ class Wrapper:
         (b) wraps the object Wrapper.wraptype(*args, **kwargs) if
             `Wrapper.wraptype` is not None
     """
-
     wrapkey: str = "wrap"
     wraptype: Any = NoneType
 
@@ -105,7 +104,7 @@ class Wrapper:
                 )
 
 
-def customwrapper(*args, wrapkey="wrap", wraptype=NoneType, **kwargs):
+def customwrapper(*, wrapkey:str="wrap", wraptype: Any=NoneType) -> Wrapper:
     """
     Returns a class decorator turning a class type into a wrapper type, that either
         (a) wraps an existing object at object creation provided as a keyword
@@ -130,12 +129,11 @@ def customwrapper(*args, wrapkey="wrap", wraptype=NoneType, **kwargs):
     return wrapper
 
 
-def wrapper(BaseType: type):
+def wrapper(BaseType: Any) -> Wrapper:
     """
     Simple class decorator that turns a type into a wrapper with default
     behaviour.
     """
-
     class WrapperType(Wrapper, BaseType):
         basetype = BaseType
 
