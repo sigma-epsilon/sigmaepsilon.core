@@ -21,19 +21,19 @@ class InfixOperator:
     """
 
     def __init__(self, function: Callable):
-        self.function = function
+        self._function = function
 
     def __ror__(self, other: Any) -> "InfixOperator":
-        return InfixOperator(lambda x, self=self, other=other: self.function(other, x))
+        return InfixOperator(lambda x, self=self, other=other: self._function(other, x))
 
     def __or__(self, other: Any) -> Any:
-        return self.function(other)
+        return self._function(other)
 
     def __rlshift__(self, other: Any) -> "InfixOperator":
-        return InfixOperator(lambda x, self=self, other=other: self.function(other, x))
+        return InfixOperator(lambda x, self=self, other=other: self._function(other, x))
 
     def __rshift__(self, other: Any) -> Any:
-        return self.function(other)
+        return self._function(other)
 
     def __call__(self, value1: Any, value2: Any) -> Any:
-        return self.function(value1, value2)
+        return self._function(value1, value2)

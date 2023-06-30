@@ -3,8 +3,9 @@ import unittest
 
 import math
 
-from sigmaepsilon.core.tools.tools import float_to_str_sig, issequence, \
-    suppress, timeit
+from sigmaepsilon.core.typing import issequence
+from sigmaepsilon.core.formatting import float_to_str_sig
+from sigmaepsilon.core.decorate import suppress, timeit
 from sigmaepsilon.core.alphabet import alphabet, ordrange, latinrange, \
     urange, greekrange, arabicrange
 from sigmaepsilon.core.kwargtools import isinkwargs, allinkwargs, anyinkwargs, \

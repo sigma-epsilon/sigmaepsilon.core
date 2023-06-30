@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from typing import Any
 
 __all__ = ["Wrapper", "wrapper", "customwrapper", "wrap"]
 
@@ -16,8 +17,8 @@ class Wrapper:
             `Wrapper.wraptype` is not None
     """
 
-    wrapkey = "wrap"
-    wraptype = NoneType
+    wrapkey: str = "wrap"
+    wraptype: Any = NoneType
 
     def __init__(self, *args, **kwargs):
         super().__init__()

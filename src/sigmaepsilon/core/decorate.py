@@ -1,37 +1,9 @@
 # -*- coding: utf-8 -*-
 import time
 import sys
-from typing import Callable, Optional
-from types import ModuleType
-from .thirdparty import import_package
+from typing import Callable
 
-np: Optional[ModuleType] = import_package("numpy")
-
-__all__ = ["squeeze", "timeit", "suppress"]
-
-
-def squeeze_if_array(arr):
-    return np.squeeze(arr) if isinstance(arr, np.ndarray) else arr
-
-
-def squeeze(default=True):
-    def decorator(fnc: Callable):
-        def inner(*args, squeeze: bool = default, **kwargs):
-            if squeeze:
-                res = fnc(*args, **kwargs)
-                if isinstance(res, tuple):
-                    return list(map(squeeze_if_array, res))
-                elif isinstance(res, dict):
-                    return {k: squeeze_if_array(v) for k, v in res.items()}
-                else:
-                    return squeeze_if_array(res)
-            else:
-                return fnc(*args, **kwargs)
-
-        inner.__doc__ = fnc.__doc__
-        return inner
-
-    return decorator
+__all__ = ["timeit", "suppress"]
 
 
 def timeit(fnc: Callable) -> Callable:
