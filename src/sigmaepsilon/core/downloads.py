@@ -46,7 +46,7 @@ def _decompress(filename):
 
 
 def _get_vtk_file_url(filename):
-    return f"https://github.com/sigmaepsilon/sigmaepsilon.data/raw/main/{filename}"
+    return f"https://github.com/sigma-epsilon/sigmaepsilon.data/raw/main/{filename}"
 
 
 def _http_request(url):
@@ -173,45 +173,3 @@ def delete_downloads() -> bool:
     os.makedirs(EXAMPLES_PATH)
     return True
 
-
-def download_stand():  # pragma: no cover
-    """
-    Downloads a tetrahedral mesh of a stand in vtk format.
-
-    Returns
-    -------
-    str
-        A path to a file on your filesystem.
-
-    Example
-    --------
-    >>> from sigmaepsilon.core.downloads import download_stand
-    >>> download_stand()
-    ...
-    """
-    return download_file("stand.vtk")
-
-
-def download_bunny(tetra: bool = False):  # pragma: no cover
-    """
-    Downloads a tetrahedral mesh of a bunny in vtk format.
-
-    Parameters
-    ----------
-    tetra: bool, Optional
-        If True, the returned mesh is a tetrahedral one, otherwise
-        it is a surface triangulation. Default is False.
-
-    Returns
-    -------
-    str
-        A path to a file on your filesystem.
-
-    Example
-    --------
-    >>> from sigmaepsilon.core.downloads import download_bunny
-    >>> download_bunny()
-    ...
-    """
-    filename = "bunny_T3.vtk" if not tetra else "bunny_TET4.vtk"
-    return download_file(filename)
