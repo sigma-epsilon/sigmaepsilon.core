@@ -39,13 +39,14 @@ def alphabet(abctype: str = "latin", start: Union[str, int] = None) -> Iterable:
     if abctype in ("ord", "o"):
         start = 0 if start is None else start
     elif abctype in ("latin", "l"):
-        start = "a" if start is None else start
+        start = ord("a") if start is None else start
     elif abctype == "u":
-        start = "\u0000" if start is None else start
+        start = ord("\u0000") if start is None else start
     elif abctype in ("greek", "g"):
-        start = "\u03b1" if start is None else start
+        start = ord("\u03b1") if start is None else start
     else:
         raise ValueError("Invalid alphabet.")
+    start = ord(start) if isinstance(start, str) else start
     while True:
         yield chr(start)
         start += 1
