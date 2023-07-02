@@ -6,11 +6,6 @@ Contents
 
 .. toctree::
     :maxdepth: 2
-
-    user_guide
-
-.. toctree::
-    :maxdepth: 2
    
     api
 

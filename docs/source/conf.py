@@ -59,8 +59,8 @@ extensions = [
     "sphinx.ext.napoleon",
     #'sphinx_gallery.gen_gallery',
     #'sphinx_gallery.load_style',  # load CSS for gallery (needs SG >= 0.6)
-    "nbsphinx",  # to handle jupyter notebooks
-    # "nbsphinx_link",  # for including notebook files from outside the sphinx source root
+    #"nbsphinx",  # to handle jupyter notebooks
+    #"nbsphinx_link",  # for including notebook files from outside the sphinx source root
     "sphinx_copybutton",  # for "copy to clipboard" buttons
     "sphinx.ext.mathjax",  # for math equations
     # "sphinxcontrib.bibtex",  # for bibliographic references
@@ -111,15 +111,6 @@ intersphinx_mapping = {
     "sphinx": (r"https://www.sphinx-doc.org/en/master", None),
 }
 
-# -- bibtex configuration -------------------------------------------------
-# https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html
-
-#bibtex_bibfiles = ["references.bib"]
-#bibtex_default_style = "unsrt"
-
-# If no encoding is specified, utf-8-sig is assumed.
-# bibtex_encoding = 'latin'
-
 # -- MathJax Configuration -------------------------------------------------
 
 mathjax3_config = {
@@ -132,31 +123,3 @@ mathjax3_config = {
 html_theme = "pydata_sphinx_theme"
 
 html_static_path = ["_static"]
-
-# This is processed by Jinja2 and inserted before each notebook
-nbsphinx_prolog = r"""
-{% set docname = 'docs/source/' + env.doc2path(env.docname, base=None) %}
-
-.. raw:: html
-
-    <div class="admonition note">
-      This page was generated from
-      <a class="reference external" href="https://github.com/sigma-epsilon/{{ env.config.project_name }}/blob/{{ env.config.release|e }}/{{ docname|e }}">{{ docname|e }}</a>.
-    </div>
-
-.. raw:: latex
-
-    \nbsphinxstartnotebook{\scriptsize\noindent\strut
-    \textcolor{gray}{The following section was generated from
-    \sphinxcode{\sphinxupquote{\strut {{ docname | escape_latex }}}} \dotfill}}
-"""
-
-# This is processed by Jinja2 and inserted after each notebook
-nbsphinx_epilog = r"""
-{% set docname = 'docs/source/' + env.doc2path(env.docname, base=None) %}
-.. raw:: latex
-
-    \nbsphinxstopnotebook{\scriptsize\noindent\strut
-    \textcolor{gray}{\dotfill\ \sphinxcode{\sphinxupquote{\strut
-    {{ docname | escape_latex }}}} ends here.}}
-"""
