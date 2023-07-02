@@ -9,12 +9,14 @@ NoneType = type(None)
 class Wrapper:
     """
     Wrapper base class that either
-        (a) wraps an existing object at object creation provided as a keyword
-            argument with `Wrapper.wrapkey`
-        (b) wraps an existing object at object creation if it is a positional
-            argument and an instance of `Wrapper.wraptype`
-        (b) wraps the object Wrapper.wraptype(*args, **kwargs) if
-            `Wrapper.wraptype` is not `None`
+    
+    (a) wraps an existing object at object creation provided as a keyword
+        argument with `Wrapper.wrapkey`
+    (b) wraps an existing object at object creation if it is a positional
+        argument and an instance of `Wrapper.wraptype`
+    (b) wraps the object Wrapper.wraptype(*args, **kwargs) if
+        `Wrapper.wraptype` is not `None`
+    
     """
     wrapkey: str = "wrap"
     wraptype: Any = NoneType
@@ -107,11 +109,13 @@ class Wrapper:
 def customwrapper(*, wrapkey:str="wrap", wraptype: Any=NoneType) -> Wrapper:
     """
     Returns a class decorator turning a class type into a wrapper type, that either
-        (a) wraps an existing object at object creation provided as a keyword
-            argument with wrapkey
-        (b) wraps an existing object at object creation if it is a positional
-            argument and an instance of wraptype
-        (b) wraps the object wraptype(*args, **kwargs)
+    
+    (a) wraps an existing object at object creation provided as a keyword
+        argument with wrapkey
+    (b) wraps an existing object at object creation if it is a positional
+        argument and an instance of wraptype
+    (b) wraps the object wraptype(*args, **kwargs)
+    
     """
 
     class BaseWrapperType(Wrapper):

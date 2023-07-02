@@ -1,4 +1,12 @@
+sphinx
+ipython
 myst_parser
-furo
-numpy
+nbsphinx
+sphinx_copybutton
+nbsphinx-link
+sphinxcontrib-svg2pdfconverter
+sphinx_design
+sphinx-inline-tabs
+pydata-sphinx-theme
 
+numpy

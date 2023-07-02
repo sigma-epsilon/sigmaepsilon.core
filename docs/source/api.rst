@@ -1,5 +1,10 @@
-sigmaepsilon.core API reference
-===========================
+API Reference
+=============
 
-.. automodule:: sigmaepsilon.core
-    :members:
+.. toctree::
+    :maxdepth: 6
+    
+    /api/api_meta
+    /api/api_wrapping
+    /api/api_infix
+    /api/api_formatting

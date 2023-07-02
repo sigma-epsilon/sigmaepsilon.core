@@ -1,5 +1,12 @@
 # **sigmaepsilon.core** - Common developer utilities for Python projects
 
+[![CircleCI](https://circleci.com/gh/dewloosh/sigmaepsilon.core.svg?style=shield)](https://circleci.com/gh/sigma-epsilon/sigmaepsilon.core)
+[![Documentation Status](https://readthedocs.org/projects/sigmaepsiloncore/badge/?version=latest)](https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest)
+[![Python 3.7-3.10](https://img.shields.io/badge/python-3.7%E2%80%923.10-blue)](https://www.python.org)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI](https://badge.fury.io/py/sigmaepsilon.math.svg)](https://pypi.org/project/sigmaepsilon.math)
+
 The package contains some usefull stuff for general Python development activites that turned out to be highly reusable during developing projects in the SigmaEpsilon namespace.
 
 Some of the most notable contents:
@@ -12,11 +19,9 @@ Some of the most notable contents:
 * Wrapping
   * An extendible `Wrapper` class and a few factory functions to help you safely wrap objects.
 
-* An `InfixOperator` class to create elegant binary operators.
-
 ## **Documentation**
 
-The [documentation](https://sigmaepsilon.core.readthedocs.io/en/latest/) is hosted on ReadTheDocs.
+The [documentation](https://sigmaepsiloncore.readthedocs.io/en/latest/) is hosted on ReadTheDocs.
 
 ## **Installation**
 
@@ -38,6 +43,28 @@ and install from source by typing
 >>> pip install .
 ```
 
+If you want to run the tests, you can install the necessary optional dependencies like this
+
+```console
+>>> pip install ".[test]"
+```
+
+### For developers
+
+For development purposes, it is suggested to install the package in editable mode, with the optional dependencies for both testing, development and documentation
+
+```console
+>>> pip install -e ".[test, dev, docs]"
+```
+
+## Testing
+
+To run the tests, run the following command in the root of the project:
+
+```console
+>>> pytest
+```
+
 ## **License**
 
-This package is licensed under the MIT license.
+This package is licensed under the MIT license. See the accached LICENSE file for the details.

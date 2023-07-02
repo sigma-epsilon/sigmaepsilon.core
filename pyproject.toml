@@ -42,6 +42,7 @@ where = ["src"]
 dependencies = { file = ["requirements.txt"] }
 optional-dependencies.test = { file = ["requirements-test.txt"] }
 optional-dependencies.dev = { file = ["requirements-dev.txt"] }
+optional-dependencies.docs = { file = ["docs/requirements.txt"] }
 
 [project.urls]
 Homepage = "https://github.com/sigma-epsilon/sigmaepsilon.core"

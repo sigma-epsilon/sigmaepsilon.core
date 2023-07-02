@@ -1,16 +1,17 @@
+import os
+import appdirs
+import warnings
+from typing import Optional
+import importlib.metadata
+
 from .wrapping import Wrapper
 from .typing import ishashable, issequence
 from .cp import classproperty
 from .infix import InfixOperator
 from .attr import attributor
 
-import os
-import appdirs
-import warnings
-from typing import Optional
-
-__version__ = "0.0.1"
-__description__ = "Common developer utilities for Python projects."
+__pkg_name__ = "sigmaepsilon.core"
+__version__ = importlib.metadata.version(__pkg_name__)
 
 # catch annoying numpy/vtk future warning:
 warnings.simplefilter(action="ignore", category=FutureWarning)
