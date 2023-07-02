@@ -67,4 +67,4 @@ To run the tests, run the following command in the root of the project:
 
 ## **License**
 
-This package is licensed under the MIT license. See the accached LICENSE file for the details.
+This package is licensed under the MIT license. See the attached LICENSE file for the details.
