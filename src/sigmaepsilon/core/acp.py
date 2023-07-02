@@ -4,11 +4,12 @@ Multiple solutions on how to enforce an abstract class property
 on an object. Generic types like 'List[int]' are not allowed, 
 because the don't work well with the isinstance()-like methods.
 """
+from typing import Callable
 
 __all__ = ['abstract_class_property', 'setproperty']
 
 
-def abstract_class_property(**kwargs):
+def abstract_class_property(**kwargs) -> Callable:
     return abstract_class_property_B(**kwargs)
 
 
@@ -26,7 +27,7 @@ and a wrapper class with classic pythonic manipulations.
 """
 
 
-def abstract_class_property_A(**kwargs):
+def abstract_class_property_A(**kwargs) -> Callable:
     """
     Decorator function to decorate objects with abstract
     class properties. Leaves behind another decorator 
@@ -78,7 +79,7 @@ This implementation also checks the validity of the declaration.
 """
 
 
-def abstract_class_property_B(**kwargs):
+def abstract_class_property_B(**kwargs) -> Callable:
     """
     Decorator function to decorate objects with abstract
     class properties. Leaves behind another decorator

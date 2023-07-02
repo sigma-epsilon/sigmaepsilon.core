@@ -18,11 +18,13 @@ class classproperty(property):
     The wrapped method may explicitly use the `classmethod` decorator (which
     must become before this decorator), or the `classmethod` may be omitted
     (it is implicit through use of this decorator).
+    
     .. note::
         classproperty only works for *read-only* properties.  It does not
         currently allow writeable/deletable properties, due to subtleties of how
-        Python descriptors work.  In order to implement such properties on a class
+        Python descriptors work.  In order to implement such properties on a class,
         a metaclass for that class must be implemented.
+        
     Parameters
     ----------
     fget: callable
@@ -38,6 +40,7 @@ class classproperty(property):
         argument can also be used when `classproperty` is used as a decorator
         (see the third example below).  When used in the decorator syntax this
         *must* be passed in as a keyword argument.
+        
     Examples
     --------
     ::

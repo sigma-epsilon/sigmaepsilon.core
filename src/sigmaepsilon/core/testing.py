@@ -10,7 +10,7 @@ __all__ = ["SigmaEpsilonTestCase"]
 
 class SigmaEpsilonTestCase(unittest.TestCase):
     """
-    A base class for other classes in other SigmaEpsilon projects.
+    A base class for test cases in SigmaEpsilon projects.
     """
     def assertFailsProperly(self, exc:Exception, fnc:Callable, *args, **kwargs):
         """
