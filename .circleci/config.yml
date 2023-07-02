@@ -24,8 +24,8 @@ jobs:
           name: Build wheel
           command: |
             pip install wheel twine
-            python setup.py install
-            python setup.py sdist bdist_wheel
+            pip install .
+            python -m build
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
@@ -40,7 +40,8 @@ jobs:
           name: Deploy to testpypi
           command: |
             pip install wheel twine
-            python setup.py sdist bdist_wheel
+            pip install .
+            python -m build
             python -m twine upload --repository testpypi --skip-existing dist/*
 
   pypi_publish:
@@ -52,7 +53,8 @@ jobs:
           name: Deploy to pypi
           command: |
             pip install wheel twine
-            python setup.py sdist bdist_wheel
+            pip install .
+            python -m build
             python -m twine upload --skip-existing dist/*
 
   test310:  # This is the name of the job, feel free to change it to better match what you're trying to do!
@@ -79,9 +81,9 @@ jobs:
           # pip-dependency-file: requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
       - python/install-packages:
           pkg-manager: pip
-          pip-dependency-file: test-requirements.txt
+          pip-dependency-file: requirements-test.txt
       - run:
-          command: python setup.py install
+          command: pip install .
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
@@ -130,7 +132,7 @@ workflows:
       - build_test
       - test_pypi_publish:
           context:
-            - pypi deploy
+            - PyPI deploy
           requires:
             - build_test
           filters:
@@ -139,7 +141,7 @@ workflows:
                 - main
       - pypi_publish:
           context:
-            - pypi deploy
+            - PyPI deploy
           requires:
             - test_pypi_publish
           filters:
