@@ -25,6 +25,7 @@ jobs:
           command: |
             pip install wheel twine
             pip install .
+            pip install 'build<0.10.0'
             python -m build
       - run:
           name: Run tests
@@ -41,6 +42,7 @@ jobs:
           command: |
             pip install wheel twine
             pip install .
+            pip install 'build<0.10.0'
             python -m build
             python -m twine upload --repository testpypi --skip-existing dist/*
 
@@ -54,6 +56,7 @@ jobs:
           command: |
             pip install wheel twine
             pip install .
+            pip install 'build<0.10.0'
             python -m build
             python -m twine upload --skip-existing dist/*
 
