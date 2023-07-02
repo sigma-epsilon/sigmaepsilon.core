@@ -1,6 +1,6 @@
 # **sigmaepsilon.core** - Common developer utilities for Python projects
 
-[![CircleCI](https://circleci.com/gh/dewloosh/sigmaepsilon.core.svg?style=shield)](https://circleci.com/gh/sigma-epsilon/sigmaepsilon.core)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/sigma-epsilon/sigmaepsilon.core/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/sigma-epsilon/sigmaepsilon.core/tree/main)
 [![Documentation Status](https://readthedocs.org/projects/sigmaepsiloncore/badge/?version=latest)](https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest)
 [![Python 3.7-3.10](https://img.shields.io/badge/python-3.7%E2%80%923.10-blue)](https://www.python.org)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
