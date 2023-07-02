@@ -8,7 +8,8 @@ NoneType = type(None)
 
 class Wrapper:
     """
-    Wrapper base class that either
+    Wrapper base class that makes it easy (and safe) to extend other objects.
+    Based on the provided arguments at initialization, the wrapper either
     
     (a) wraps an existing object at object creation provided as a keyword
         argument with `Wrapper.wrapkey`
@@ -16,7 +17,50 @@ class Wrapper:
         argument and an instance of `Wrapper.wraptype`
     (b) wraps the object Wrapper.wraptype(*args, **kwargs) if
         `Wrapper.wraptype` is not `None`
+        
+    The attributes and methods of the wrapped instance are all accessible
+    through the wrapper.
     
+    Using a wrapper is a good idea if you want to easily extend the functionality
+    provided by a class of an external library without having to worry about shadowing
+    an important method and thus risking to break the behaviour of the wrapped object.
+        
+    Examples
+    --------
+    >>> import numpy as np
+    >>>
+    >>> arr = np.eye(3)
+    >>> wrapper = Wrapper(wrap=arr)
+    
+    Now the wrapped NumPy array is accessible as `wrapper.wrapped`.
+    
+    A wrapper class can be used to extend the behaviour:
+    
+    >>> MyWrapper(Wrapper):
+    >>>     wraptype = np.ndarray
+    >>>     
+    >>>     def invert() -> None:
+    >>>         self.wrapped = np.linalg.inv(self.wrapped)
+    
+    With this solution, you don't have to worry about shadowing an existing
+    implementation of NumPy arrays. Not that NumPy arrays might not have a method
+    called `invert` at the time of implementing the class `MyWrapper`, but it might
+    change in the future. You can even check that internally and get notified: 
+    
+    >>> import warnings
+    >>>
+    >>> MyWrapper(Wrapper):
+    >>>     wraptype = np.ndarray
+    >>>     
+    >>>     def invert() -> None:
+    >>>         if hasattr(self.wrapped, "invert"):
+    >>>             warnings.warn("'invert' already exists in the object")
+    >>>         self.wrapped = np.linalg.inv(self.wrapped)
+    
+    Then, to wrap a NumPy array, you can do this (since the `wraptype` attribute is set,
+    the MyWrapper class is going to catch the object to wrap as a positional argument):
+    
+    >>> wrapper = MyWrapper(arr)
     """
     wrapkey: str = "wrap"
     wraptype: Any = NoneType
@@ -50,16 +94,20 @@ class Wrapper:
 
     @property
     def wrapped(self):
+        """Retruns the wrapped object."""
         return self._wrapped
 
-    def wrap(self, obj=None):
+    def wrap(self, obj: Any=None) -> Any:
+        """Wraps the provided object and returns the wrapper instance."""
         if self.wraptype is not NoneType:
             if isinstance(obj, self.wraptype):
                 self._wrapped = obj
         else:
             self._wrapped = obj
+        return self
 
     def wraps(self):
+        """Returns `True` if the instance wraps something or `False` if it doesn't."""
         return self._wrapped is not None
 
     def wrapped_obj(self):
@@ -108,7 +156,8 @@ class Wrapper:
 
 def customwrapper(*, wrapkey:str="wrap", wraptype: Any=NoneType) -> Wrapper:
     """
-    Returns a class decorator turning a class type into a wrapper type, that either
+    A factory function that returns a class decorator turning a class type 
+    into a wrapper type, that either
     
     (a) wraps an existing object at object creation provided as a keyword
         argument with wrapkey
@@ -116,6 +165,28 @@ def customwrapper(*, wrapkey:str="wrap", wraptype: Any=NoneType) -> Wrapper:
         argument and an instance of wraptype
     (b) wraps the object wraptype(*args, **kwargs)
     
+    See also
+    --------
+    :class:`~sigmaepsilon.core.wrapping.Wrapper`
+    
+    Examples
+    --------
+    Take this example from the :class:`~sigmaepsilon.core.wrapping.Wrapper` class:
+    
+    >>> MyWrapper(Wrapper):
+    >>>     wraptype = np.ndarray
+    >>>
+    >>>     def invert() -> None:
+    >>>         self.wrapped = np.linalg.inv(self.wrapped)
+    
+    An equivalent implementation of this is the following:
+    
+    >>> @customwrapper(wraptype=np.ndarray)
+    >>> MyWrapper:
+    >>>     def invert() -> None:
+    >>>         self.wrapped = np.linalg.inv(self.wrapped)
+    
+    Notice how the class `MyWrapper` is not inherited from the `Wrapper` class.
     """
 
     class BaseWrapperType(Wrapper):
@@ -137,6 +208,23 @@ def wrapper(BaseType: Any) -> Wrapper:
     """
     Simple class decorator that turns a type into a wrapper with default
     behaviour.
+    
+    Notes
+    -----
+    This is the same as using the :func:`~sigmaepsilon.core.wrapping.customwrapper`
+    with the default values.
+    
+    See also
+    --------
+    :class:`~sigmaepsilon.core.wrapping.Wrapper`
+    :func:`~sigmaepsilon.core.wrapping.customwrapper`
+    
+    Example
+    -------
+    >>> @wrapper
+    >>> MyWrapper:
+    >>>     def invert() -> None:
+    >>>         self.wrapped = np.linalg.inv(self.wrapped)
     """
     class WrapperType(Wrapper, BaseType):
         basetype = BaseType
@@ -147,5 +235,14 @@ def wrapper(BaseType: Any) -> Wrapper:
 def wrap(obj: object) -> Wrapper:
     """
     Wraps an object and returns the wrapper.
+    
+    See also
+    --------
+    :class:`~sigmaepsilon.core.wrapping.Wrapper`
+    
+    Example
+    -------
+    >>> import numpy as np
+    >>> wrapper = wrap(np.eye(3))
     """
     return Wrapper(wrap=obj)

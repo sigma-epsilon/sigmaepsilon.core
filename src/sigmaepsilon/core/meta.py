@@ -23,50 +23,9 @@ class ABCMeta_Weak(ABCMeta):
     subclasses that do. All other metaclasses of this module are subclasses of this
     class.
 
-    Examples
+    See also
     --------
-    Create a helper class first
-
-    >>> class ABC_Weak(metaclass=ABCMeta_Weak):
-    >>>    __slots__ = ()
-
-    Create an abstract class with an abstract instance method.
-
-    >>> class ABC_Parent_Weak(ABC_Weak):
-    >>>     @abstractmethod
-    >>>     def abc_method_parent(self):
-    >>>         pass
-
-    Now if we subclass our parent class without implementing `abc_method_parent`,
-    nothing happens at runtime (when the class is created).
-
-    >>> class ABC_Child_Weak(ABC_Parent_Weak):
-    >>>     @abstractmethod
-    >>>     def abc_method_child(self):
-    >>>         pass
-
-    If we create an instance with implementing the abstract classes prescribed,
-    it works fine.
-
-    >>> class MyClass(ABC_Parent_Weak):
-    >>>     def abc_method_child(self):
-    >>>         pass
-    ...
-    >>>     def abc_method_parent(self):
-    >>>         pass
-    ...
-    >>> foo = MyClass()
-
-    If miss any of the required implementations, we can see a `TypeError`:
-
-    >>> class MyClass(ABC_Parent_Weak):
-    >>>     def abc_method_child(self):
-    >>>         pass
-    ...
-    >>> foo = MyClass()
-    Traceback (most recent call last):
-        ...
-    TypeError: Can't instantiate abstract class MyClass with abstract methods abc_method_parent
+    :class:`~sigmaepsilon.core.abstract.ABC_Weak`
     """
 
     @staticmethod
@@ -123,46 +82,9 @@ class ABCMeta_Strong(ABCMeta_Weak):
     delayed with the use of another @abstractmethod decorator.
     Contrary to the weak metaclass, error occurs when the class is created.
 
-    Examples
+    See also
     --------
-    Create a helper class first
-
-    >>> class ABC_Strong(metaclass=ABCMeta_Strong):
-    >>>    __slots__ = ()
-
-    Create an abstract class with abstract instance methods.
-
-    >>> class MyParentAbstractClass(ABC_Strong):
-    >>>     @abstractmethod
-    >>>     def my_abstract_method_A(self):
-    >>>         pass
-    ...
-    >>>     @abstractmethod
-    >>>     def my_abstract_method_B(self):
-    >>>         pass
-
-    Now if we subclass our parent class, we can either provide an implementation
-    of our abstract methods, or delay the implementation by using the `abstractmethod`
-    decorator again.
-
-    >>> class MyChildAbstractClass(MyParentAbstractClass):
-    >>>     @abstractmethod
-    >>>     def my_abstract_method_A(self):
-    >>>         # this is delayed
-    >>>         pass
-    ...
-    >>>     def my_abstract_method_B(self):
-    >>>         pass
-
-    In every other case, we will se an error when the class is created.
-
-    >>> class MyChildAbstractClass(MyParentAbstractClass):
-    >>>     @abstractmethod
-    >>>     def my_abstract_method_A(self):
-    >>>         pass
-    Traceback (most recent call last):
-        ...
-    TypeError: Can't create abstract class MyChildAbstractClas! MyChildAbstractClas must implement abstract method my_abstract_method_B of class MyParentAbstractClass.
+    :class:`~sigmaepsilon.core.abstract.ABC_Strong`
     """
 
     def __init__(self, name, bases, namespace, *args, **kwargs):
@@ -193,29 +115,10 @@ class ABCMeta_Safe(ABCMeta_Weak):
     Python metaclass for safe inheritance. Throws a `TypeError`
     if a method tries to shadow a method in any of the base
     classes.
-
-    Examples
+    
+    See also
     --------
-    Create a helper class first
-
-    >>> class ABC_Safe(metaclass=ABCMeta_Safe):
-    >>>    __slots__ = ()
-
-    Create an abstract class with an instance method.
-
-    >>> class ABC_Parent_Safe(ABC_Safe):
-    >>>     def funcParentSafe(self):
-    >>>         pass
-
-    Now, if we try to overload any implementation in the parent class, we
-    got a `TypeError` when the class is created.
-
-    >>> class ABC_Child_Safe(ABC_Parent_Safe):
-    >>>     def funcParentSafe(self):
-    >>>         pass
-    Traceback (most recent call last):
-        ...
-    TypeError: Can't create abstract class ABC_Child_Safe! Method funcParentSafe is already implemented in class ABC_Parent_Safe.
+    :class:`~sigmaepsilon.core.abstract.ABC_Safe`
     """
 
     def __init__(self, name, bases, namespace, *args, **kwargs):
