@@ -135,7 +135,7 @@ workflows:
       - build_test
       - test_pypi_publish:
           context:
-            - PyPI deploy
+            - TestPyPI deploy
           requires:
             - build_test
           filters:
