@@ -43,7 +43,7 @@ and install from source by typing
 >>> pip install .
 ```
 
-If you want to run the tests, you can install the necessary optional dependencies like this
+If you want to run the tests, you can install the package along with the necessary optional dependencies like this
 
 ```console
 >>> pip install ".[test]"
