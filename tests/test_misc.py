@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from sigmaepsilon.core.utils import get_index_suffix
+from sigmaepsilon.core.misc import get_index_suffix
 
 
 class TestIndexSuffix(unittest.TestCase):
