@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sigmaepsilon.core"
-version = "1.0.0"
+version = "1.0.1"
 description = "Common developer utilities for Python projects."
 classifiers=[
         "Development Status :: 5 - Production/Stable",
