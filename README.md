@@ -1,8 +1,8 @@
-# **Sigmaepsilon.Core** - Common developer utilities for Python projects
+# **SigmaEpsilon.Core** - Common developer utilities for Python projects
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/sigma-epsilon/sigmaepsilon.core/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/sigma-epsilon/sigmaepsilon.core/tree/main)
-[![codecov](https://codecov.io/gh/sigma-epsilon/sigmaepsilon.core/graph/badge.svg?token=WNLDFIGGL6)](https://codecov.io/gh/sigma-epsilon/sigmaepsilon.core)
 [![Documentation Status](https://readthedocs.org/projects/sigmaepsiloncore/badge/?version=latest)](https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest)
+[![codecov](https://codecov.io/gh/sigma-epsilon/sigmaepsilon.core/graph/badge.svg?token=WNLDFIGGL6)](https://codecov.io/gh/sigma-epsilon/sigmaepsilon.core)
 [![Python 3.7-3.10](https://img.shields.io/badge/python-3.7%E2%80%923.10-blue)](https://www.python.org)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
