@@ -7,7 +7,7 @@ orbs:
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@2.1.1
-  codecov: codecov/codecov@3
+  codecov: codecov/codecov@3.2.4
 
 jobs:
   build_test:
@@ -60,7 +60,7 @@ jobs:
             python -m build
             python -m twine upload --skip-existing dist/*
 
-  test310:  # This is the name of the job, feel free to change it to better match what you're trying to do!
+  test-cov-py310:  # This is the name of the job, feel free to change it to better match what you're trying to do!
     # These next lines defines a docker executors: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from dockerhub or use one of the convenience images from CircleCI's Developer Hub
     # A list of available CircleCI docker convenience images are available here: https://circleci.com/developer/images/image/cimg/python
@@ -73,30 +73,30 @@ jobs:
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
-    
-    working_directory: ~/project
-    
+        
     steps:
       - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
-          # pip-dependency-file: requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: requirements-test.txt
       - run:
-          command: pip install .
+          name: Install package for testing
+          command: pip install ".[test, dev]"
       - run:
-          name: Run tests
-          # This assumes pytest is installed via the install-package step above
-          command: pytest --cov
+          name: Run tests and generate coverage report
+          command: |
+            chmod +x ./run_pytest_cov.sh
+            ./run_pytest_cov.sh
       - run:
-          name: Generate Artifact
-          command: pytest --cov-report html
-      #- codecov/upload
+          name: List working directory contents
+          command: ls -al
+      - run:
+          name: List home directory contents
+          command: ls -a ~
+      - codecov/upload
       - store_artifacts:
-          path: ~/project/htmlcov
+          name: Store coverage report as artifact
+          path: htmlcov
+      - store_test_results:
+          name: Store test results
+          path: test-results
 
   tox-test:  # This is the name of the job, feel free to change it to better match what you're trying to do!
     # These next lines defines a docker executors: https://circleci.com/docs/2.0/executor-types/
@@ -128,11 +128,15 @@ workflows:
     # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
     jobs:
       #- tox-test
-      - test310
+      - test-cov-py310
 
   build_test_publish:
     jobs:
-      - build_test
+      - build_test:
+          filters:
+            branches:
+              only:
+                - main
       - test_pypi_publish:
           context:
             - TestPyPI deploy
