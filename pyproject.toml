@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sigmaepsilon.core"
-version = "1.1.0"
+version = "1.1.1"
 description = "Common developer utilities for Python projects."
 classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -32,7 +32,7 @@ keywords = [
     "engineering", "mechanics", "science", "numerical analysis", 
     "finite element method", "solid mechanics", "optimization"
 ]
-requires-python = ">=3.7, <3.11"
+requires-python = ">=3.8, <3.11"
 dynamic = ["dependencies", "optional-dependencies"]
 
 [tool.setuptools.packages.find]
