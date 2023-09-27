@@ -76,3 +76,46 @@ def load_pyproject_config(
         config = config_toml
 
     return config
+
+
+def namespace_package_name(start_dir: str = None, max_depth: int = 10) -> str:
+    """
+    Returns the name of the SigmaEpsilon namespace package.
+    
+    Parameters
+    ----------
+    start_dir: str, Optional
+        The dictionary to start with. If not provided, the search starts in the current
+        working directory. Default is None.
+    max_depth: int, Optional
+        The maximum folderwise distance from the starting directory. If provided,
+        it must be an integer >= 0. Default is 10.
+    """
+    if start_dir is None:
+        start_dir = os.getcwd()
+
+    if not isinstance(start_dir, str):
+        raise TypeError("start_dir must be a string")
+    
+    current_dir = start_dir
+    depth = 0
+
+    if not isinstance(max_depth, int):
+        raise TypeError("max_depth must be an integer")
+
+    if not max_depth >= 0:
+        raise ValueError("max_depth must be a positive integer")
+
+    while depth <= max_depth:        
+        parent_dir_path, current_dir_name = os.path.split(current_dir)
+        parent_dir_name = os.path.split(parent_dir_path)[-1]
+        
+        if os.path.isdir(current_dir) and parent_dir_name=="sigmaepsilon":
+            return ".".join([parent_dir_name, current_dir_name])
+
+        parent_dir = os.path.dirname(current_dir)
+
+        current_dir = parent_dir
+        depth += 1
+
+    return None
