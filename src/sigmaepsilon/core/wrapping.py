@@ -152,6 +152,12 @@ class Wrapper:
                     "'{}' object does not support "
                     "item assignment".format(self.__class__.__name__)
                 )
+    
+    def __repr__(self) -> str:
+        return repr(self._wrapped)
+    
+    def __str__(self) -> str:
+        return str(self._wrapped)
 
 
 def customwrapper(*, wrapkey:str="wrap", wraptype: Any=NoneType) -> Wrapper:
