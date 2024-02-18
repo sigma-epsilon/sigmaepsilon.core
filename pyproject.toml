@@ -27,13 +27,12 @@ documentation = "https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest
 packages = [{ include = "sigmaepsilon", from = "src" }]
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.8,<3.12"
 appdirs = "*"
 six = "*"
 toml = "*"
 
 [tool.poetry.group.dev.dependencies]
-python = ">=3.10"
 ipykernel = "^6.29.2"
 black = "^24.2.0"
 ipython = "^8.21.0"
