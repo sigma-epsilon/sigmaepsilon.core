@@ -27,9 +27,9 @@ documentation = "https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest
 packages = [{ include = "sigmaepsilon", from = "src" }]
 
 [tool.poetry.dependencies]
-appdirs
-six
-toml
+appdirs = "*"
+six = "*"
+toml = "*"
 
 [tool.poetry.group.dev.dependencies]
 python = ">=3.10"
@@ -44,11 +44,11 @@ pytest = "^8.0.1"
 pytest-cov = "^4.1.0"
 flake8 = "^7.0.0"
 coverage = "^7.4.1"
-numpy
+numpy = "*"
 
 [tool.poetry.group.docs.dependencies]
-black 
-flake8 
-ipykernel 
-numpy
+black = "*"
+flake8 = "*" 
+ipykernel = "*" 
+numpy = "*"
 tornado >= "6.3.3" # not directly required, pinned by Snyk to avoid a vulnerability
