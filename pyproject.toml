@@ -27,7 +27,7 @@ documentation = "https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest
 packages = [{ include = "sigmaepsilon", from = "src" }]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.12"
+python = ">=3.8.1,<3.12"
 appdirs = "*"
 six = "*"
 toml = "*"
