@@ -1,48 +1,58 @@
 [build-system]
-requires = [
-    "setuptools>=65.5.1",
-    "setuptools-scm",
-    "wheel>=0.38.0"
-]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[project]
+[tool.poetry]
 name = "sigmaepsilon.core"
-version = "1.2.0"
+version = "1.2.1"
 description = "Common developer utilities for Python projects."
 classifiers=[
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3 :: Only",
         "Operating System :: OS Independent",
 ]
-readme = {file = "README.md", content-type = "text/markdown"}
-authors = [
-    { name = "SigmaEpsilon", email = "bencebalogh@sigmaepsilon.com" }
-]
-maintainers = [
-    { name = "SigmaEpsilon", email = "bencebalogh@sigmaepsilon.com" }
-]
-license = { file = "LICENSE" }
+readme = "README.md"
+authors = ["Bence Balogh <bencebalogh@sigmaepsilon.com>"]
+maintainers = ["Bence Balogh <bencebalogh@sigmaepsilon.com>"]
+license = "MIT"
 keywords = [
-    "engineering", "mechanics", "science", "numerical analysis", 
-    "finite element method", "solid mechanics", "optimization"
+    "engineering", "mathematics", "optimization", "vector", "tensor",
+    "vector algebra", "tensor algebra", "symbolic mathematics",
+    "nonlinear optimization"
 ]
-requires-python = ">=3.8, <3.11"
-dynamic = ["dependencies", "optional-dependencies"]
+homepage = "https://github.com/sigma-epsilon/sigmaepsilon.core"
+repository = "https://github.com/sigma-epsilon/sigmaepsilon.core"
+documentation = "https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest"
+packages = [{ include = "sigmaepsilon", from = "src" }]
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+appdirs = "*"
+six = "*"
+toml = "*"
 
-[tool.setuptools.dynamic]
-dependencies = { file = ["requirements.txt"] }
-optional-dependencies.test = { file = ["requirements-test.txt"] }
-optional-dependencies.dev = { file = ["requirements-dev.txt"] }
-optional-dependencies.docs = { file = ["docs/requirements.txt"] }
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+flake8 = "^7.0.0"
+ipykernel = "^6.29.2"
+numpy = "^1.26.4"
+tornado = ">=6.3.3"
+poetry-plugin-export = "^1.6.0"
 
-[project.urls]
-Homepage = "https://github.com/sigma-epsilon/sigmaepsilon.core"
+[tool.poetry.group.test.dependencies]
+pytest = "^8.0.1"
+pytest-cov = "^4.1.0"
+coverage = "^7.4.1"
+numpy = "^1.26.4"
+flake8 = "^7.0.0"
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.2.6"
+ipython = "^8.21.0"
+myst-parser = "^2.0.0"
+sphinx-copybutton = "^0.5.2"
+sphinx-design = "^0.5.0"
+sphinx-inline-tabs = "^2023.4.21"
+pydata-sphinx-theme = "^0.15.2"
+numpy = "^1.26.4"
