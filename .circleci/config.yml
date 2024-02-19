@@ -44,8 +44,14 @@ jobs:
       - python/install-packages:
           pkg-manager: poetry
       - run:
+          name: Add new command
+          command: chmod +x ./poetry_export.sh
+      - run:
           name: Build project
           command: |
+            poetry check
+            poetry lock
+            ./poetry_export.sh 
             poetry install
             poetry build
       - run:
@@ -62,8 +68,14 @@ jobs:
       - python/install-packages:
           pkg-manager: poetry
       - run:
+          name: Add new command
+          command: chmod +x ./poetry_export.sh
+      - run:
           name: Build project
           command: |
+            poetry check
+            poetry lock
+            ./poetry_export.sh 
             poetry install
             poetry build
       - run:
@@ -73,7 +85,7 @@ jobs:
             poetry publish --skip-existing
 
 workflows:
-  test_and_deploy_to_test_pypi:
+  test_and_deploy:
     jobs:
       - run_tests_3_10
 
@@ -96,3 +108,4 @@ workflows:
             branches:
               only:
                 - main
+                

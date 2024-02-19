@@ -27,28 +27,31 @@ documentation = "https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest
 packages = [{ include = "sigmaepsilon", from = "src" }]
 
 [tool.poetry.dependencies]
-python = ">=3.8.1,<3.12"
+python = ">=3.10,<4.0"
 appdirs = "*"
 six = "*"
 toml = "*"
 
 [tool.poetry.group.dev.dependencies]
-ipykernel = "^6.29.2"
 black = "^24.2.0"
-ipython = "^8.21.0"
+flake8 = "^7.0.0"
+ipykernel = "^6.29.2"
+numpy = "^1.26.4"
+tornado = ">=6.3.3"
 poetry-plugin-export = "^1.6.0"
-pre-commit = "^3.6.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.0.1"
 pytest-cov = "^4.1.0"
-networkx = "^3.2.1"
-flake8 = "^7.0.0"
 coverage = "^7.4.1"
+numpy = "^1.26.4"
 
 [tool.poetry.group.docs.dependencies]
-black = "*"
-flake8 = "*" 
-ipykernel = "*" 
-numpy = "*"
-tornado = ">=6.3.3" # not directly required, pinned by Snyk to avoid a vulnerability
+sphinx = "^7.2.6"
+ipython = "^8.21.0"
+myst-parser = "^2.0.0"
+sphinx-copybutton = "^0.5.2"
+sphinx-design = "^0.5.0"
+sphinx-inline-tabs = "^2023.4.21"
+pydata-sphinx-theme = "^0.15.2"
+numpy = "^1.26.4"
