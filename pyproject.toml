@@ -45,6 +45,7 @@ pytest = "^8.0.1"
 pytest-cov = "^4.1.0"
 coverage = "^7.4.1"
 numpy = "^1.26.4"
+flake8 = "^7.0.0"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = "^7.2.6"
