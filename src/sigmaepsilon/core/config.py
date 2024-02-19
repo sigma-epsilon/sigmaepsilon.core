@@ -66,7 +66,11 @@ def load_pyproject_config(
 
     with open(filepath, "r") as f:
         config_toml = toml.load(f)
-
+        
+    has_poetry = "tool" in config_toml and "poetry" in config_toml["tool"]
+    if has_poetry and not section:
+        config_toml = config_toml['tool']['poetry']
+        
     if section:
         if isinstance(section, str):
             config = config_toml.get(section, {})
@@ -74,7 +78,7 @@ def load_pyproject_config(
             config = [config_toml.get(s, {}) for s in section]
     else:
         config = config_toml
-
+        
     return config
 
 
