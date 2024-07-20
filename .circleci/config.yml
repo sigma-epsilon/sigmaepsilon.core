@@ -4,13 +4,13 @@ orbs:
   python: circleci/python@2.1.1
 
 executors:
-  my-executor:
+  my-executor_3-12:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/python:3.12
 
 jobs:
   run_tests_3_12:
-    executor: my-executor
+    executor: my-executor_3-12
     steps:
       - checkout
       - python/install-packages:
@@ -38,7 +38,7 @@ jobs:
           path: test-results
 
   deploy_to_test_pypi:
-    executor: my-executor
+    executor: my-executor_3-12
     steps:
       - checkout
       - python/install-packages:
@@ -62,7 +62,7 @@ jobs:
             poetry publish -r testpypi --skip-existing
 
   deploy_to_pypi:
-    executor: my-executor
+    executor: my-executor_3-12
     steps:
       - checkout
       - python/install-packages:
@@ -87,13 +87,13 @@ jobs:
 workflows:
   test_and_deploy:
     jobs:
-      - run_tests_3_10
+      - run_tests_3_12
 
       - deploy_to_test_pypi:
           context:
             - TestPyPI deploy
           requires:
-            - run_tests_3_10
+            - run_tests_3_12
           filters:
             branches:
               only:
@@ -103,7 +103,7 @@ workflows:
           context:
             - PyPI deploy
           requires:
-            - run_tests_3_10
+            - run_tests_3_12
           filters:
             branches:
               only:
