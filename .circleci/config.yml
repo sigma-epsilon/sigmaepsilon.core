@@ -9,7 +9,7 @@ executors:
       - image: cimg/python:3.10
 
 jobs:
-  run_tests_3_10:
+  run_tests_3_12:
     executor: my-executor
     steps:
       - checkout
