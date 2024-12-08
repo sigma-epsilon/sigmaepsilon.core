@@ -1,18 +1,25 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@2.1.1
+  python: circleci/python@3.0.0
+  codecov: codecov/codecov@5.0.3
 
 executors:
   my-executor:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/python:3.12
 
 jobs:
-  run_tests_3_10:
+  run_tests:
     executor: my-executor
     steps:
       - checkout
+      - run:
+          name: Refresh packages
+          command: sudo apt-get update
+      - run:
+          name: Create lock file
+          command: poetry lock --no-update
       - python/install-packages:
           pkg-manager: poetry
       - run:
@@ -22,17 +29,12 @@ jobs:
       - run:
           name: Run tests and generate coverage report
           command: |
-            chmod +x ./run_pytest_cov.sh
-            ./run_pytest_cov.sh
-      - run:
-          name: Upload coverage reports to Codecov
-          command: |
-            curl -Os https://uploader.codecov.io/latest/linux/codecov
-            chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN}
+            chmod +x ./run_tests.sh
+            ./run_tests.sh
       - store_artifacts:
           name: Store coverage report as artifact
-          path: htmlcov
+          path: htmlcov/
+      - codecov/upload
       - store_test_results:
           name: Store test results
           path: test-results
@@ -41,6 +43,9 @@ jobs:
     executor: my-executor
     steps:
       - checkout
+      - run:
+          name: Create lock file
+          command: poetry lock --no-update
       - python/install-packages:
           pkg-manager: poetry
       - run:
@@ -65,6 +70,9 @@ jobs:
     executor: my-executor
     steps:
       - checkout
+      - run:
+          name: Create lock file
+          command: poetry lock --no-update
       - python/install-packages:
           pkg-manager: poetry
       - run:
@@ -87,13 +95,13 @@ jobs:
 workflows:
   test_and_deploy:
     jobs:
-      - run_tests_3_10
+      - run_tests
 
       - deploy_to_test_pypi:
           context:
             - TestPyPI deploy
           requires:
-            - run_tests_3_10
+            - run_tests
           filters:
             branches:
               only:
@@ -103,7 +111,7 @@ workflows:
           context:
             - PyPI deploy
           requires:
-            - run_tests_3_10
+            - run_tests
           filters:
             branches:
               only:
