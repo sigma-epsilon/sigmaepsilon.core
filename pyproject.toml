@@ -16,11 +16,6 @@ readme = "README.md"
 authors = ["Bence Balogh <bencebalogh@sigmaepsilon.com>"]
 maintainers = ["Bence Balogh <bencebalogh@sigmaepsilon.com>"]
 license = "MIT"
-keywords = [
-    "engineering", "mathematics", "optimization", "vector", "tensor",
-    "vector algebra", "tensor algebra", "symbolic mathematics",
-    "nonlinear optimization"
-]
 homepage = "https://github.com/sigma-epsilon/sigmaepsilon.core"
 repository = "https://github.com/sigma-epsilon/sigmaepsilon.core"
 documentation = "https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest"
