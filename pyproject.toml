@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "sigmaepsilon.core"
-version = "1.2.1"
+version = "1.2.2"
 description = "Common developer utilities for Python projects."
 classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -16,11 +16,6 @@ readme = "README.md"
 authors = ["Bence Balogh <bencebalogh@sigmaepsilon.com>"]
 maintainers = ["Bence Balogh <bencebalogh@sigmaepsilon.com>"]
 license = "MIT"
-keywords = [
-    "engineering", "mathematics", "optimization", "vector", "tensor",
-    "vector algebra", "tensor algebra", "symbolic mathematics",
-    "nonlinear optimization"
-]
 homepage = "https://github.com/sigma-epsilon/sigmaepsilon.core"
 repository = "https://github.com/sigma-epsilon/sigmaepsilon.core"
 documentation = "https://sigmaepsiloncore.readthedocs.io/en/latest/?badge=latest"
@@ -31,6 +26,15 @@ python = ">=3.10,<4.0"
 appdirs = "*"
 six = "*"
 toml = "*"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.docs]
+optional = true
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.2.0"
