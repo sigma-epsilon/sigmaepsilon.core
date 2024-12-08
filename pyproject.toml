@@ -32,8 +32,16 @@ appdirs = "*"
 six = "*"
 toml = "*"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.group.dev]
 optional = true
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
 black = "^24.2.0"
 flake8 = "^7.0.0"
 ipykernel = "^6.29.2"
@@ -42,7 +50,6 @@ tornado = ">=6.3.3"
 poetry-plugin-export = "^1.6.0"
 
 [tool.poetry.group.test.dependencies]
-optional = true
 pytest = "^8.0.1"
 pytest-cov = "^4.1.0"
 coverage = "^7.4.1"
@@ -50,7 +57,6 @@ numpy = "^1.26.4"
 flake8 = "^7.0.0"
 
 [tool.poetry.group.docs.dependencies]
-optional = true
 sphinx = "^7.2.6"
 ipython = "^8.21.0"
 myst-parser = "^2.0.0"
