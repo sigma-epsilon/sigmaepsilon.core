@@ -58,7 +58,9 @@ def load_pyproject_config(
         The path of the config file. If not specified, an attempt is made to locate it.
         Default is None.
     section: Union[str, Iterable[str]], Optional
-        One or more section of the config file. If not specified, the entire content is returned.
+        One or more section of the config file. If not specified, the project metadata
+        is returned (the `[tool.poetry]` table for Poetry projects, the `[project]` table
+        otherwise if present), or the entire content if there is no such table.
         Default is None.
     """
     if not filepath:
@@ -66,11 +68,13 @@ def load_pyproject_config(
 
     with open(filepath, "r") as f:
         config_toml = toml.load(f)
-        
+
     has_poetry = "tool" in config_toml and "poetry" in config_toml["tool"]
     if has_poetry and not section:
         config_toml = config_toml['tool']['poetry']
-        
+    elif "project" in config_toml and not section:
+        config_toml = config_toml['project']
+
     if section:
         if isinstance(section, str):
             config = config_toml.get(section, {})
