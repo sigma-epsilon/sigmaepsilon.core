@@ -4,10 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sigmaepsilon.core"
-version = "1.2.2"
+version = "1.3.0"
 description = "Common developer utilities for Python projects."
 readme = "README.md"
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Bence Balogh", email = "bencebalogh@sigmaepsilon.com" }]
 maintainers = [{ name = "Bence Balogh", email = "bencebalogh@sigmaepsilon.com" }]
@@ -18,8 +18,8 @@ classifiers = [
 ]
 dependencies = [
     "appdirs",
-    "six",
-    "toml",
+    "six>=1.0",
+    "toml>=0.10",
 ]
 
 [project.urls]
@@ -42,14 +42,14 @@ dev = [
     "black>=24.2.0,<25",
     "flake8>=7.0.0,<8",
     "ipykernel>=6.29.2,<7",
-    "numpy>=1.26.4,<2",
+    "numpy>=1.22",
     "tornado>=6.3.3",
 ]
 test = [
     "pytest>=8.0.1,<9",
     "pytest-cov>=4.1.0,<5",
     "coverage>=7.4.1,<8",
-    "numpy>=1.26.4,<2",
+    "numpy>=1.22",
     "flake8>=7.0.0,<8",
 ]
 docs = [
@@ -60,5 +60,5 @@ docs = [
     "sphinx-design>=0.5.0,<0.6",
     "sphinx-inline-tabs>=2023.4.21,<2024",
     "pydata-sphinx-theme>=0.15.2,<0.16",
-    "numpy>=1.26.4,<2",
+    "numpy>=1.22",
 ]
