@@ -9,3 +9,4 @@ API Reference
     /api/api_wrapping
     /api/api_infix
     /api/api_formatting
+    /api/api_jit
